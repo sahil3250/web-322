@@ -1,0 +1,22 @@
+h2
+{
+
+    font-family: 'Blanka', sans-serif;
+    overflow: hidden;
+}
+
+ span
+{
+    display: inline-block;
+    transform: translateY(90%);
+}
+.navbar-brand
+{
+    display: inline-block;
+    transform: translateX(-100%);
+}
+.left
+{
+    
+    transform: translateX(100%);
+}
