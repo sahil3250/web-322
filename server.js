@@ -4,8 +4,7 @@ var express = require("express");
 var path = require('path');
 var app = express();
 const HTTP_PORT = process.env.PORT || 8080;
-
-
+app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   
     res.redirect('/about');
