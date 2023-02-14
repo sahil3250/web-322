@@ -3,8 +3,12 @@ h2
 
     font-family: 'Blanka', sans-serif;
     overflow: hidden;
+    color: aquamarine;
 }
+p{
+    color: lightblue;
 
+}
  span
 {
     display: inline-block;
@@ -20,3 +24,28 @@ h2
     
     transform: translateX(100%);
 }
+.slider1
+{
+    background: rgb(134,50,173);
+    background: linear-gradient(90deg, rgba(134,50,173,0.9332983193277311) 1%, rgba(58,12,113,1) 77%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+  transform: translateY(100%);
+
+}
+.slider {
+    background: rgb(50,171,173);
+    background: linear-gradient(90deg, rgba(50,171,173,0.9332983193277311) 1%, rgba(40,20,90,1) 77%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -100;
+  transform: translateX(100%);
+    
+  }

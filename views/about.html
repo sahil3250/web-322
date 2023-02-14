@@ -8,10 +8,14 @@
       <!-- Latest compiled and minified Bootstrap 3.4.1 CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
       <link rel="stylesheet" href="../public/css/main.css">
+
       <link href="https://fonts.cdnfonts.com/css/blanka" rel="stylesheet">
       <title>WEB322 - Assignment Template</title>
   </head>
   <body>
+
+    <div class="slider1"></div>
+
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -29,11 +33,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="/blog">Blog</a></li>
-            <li class="active"><a href="./about.html">About</a></li>
+            <li class="active"><a href="/about">About</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/Posts">Posts</a></li>
-            <li><a href="/Categories">Categories</a></li>            
+            <li><a href="/Categories">Categories</a></li>   
+            	<li><a href="/posts/add">Add Post</a></li>
+         
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -67,16 +73,10 @@
     t1.to(".left",{x:'0%',duration:1 } , "-=1");
 
     t1.to(".navbar-brand",{x:'0%',duration:1 } , "-=1");
+    t1.to(".slider1",{y:'0%' ,duration:1.5 }, "-=1");
 
-    const maxColor = 16777215;
-    
-    const p = document.querySelector('body');
 
-    p.addEventListener("mousedown", (e) => {
-    let color = "#" + Math.floor(Math.random() * maxColor).toString(16);
-
-    p.style.backgroundColor = color;
-    });
+   
 
    
 
