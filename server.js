@@ -13,10 +13,10 @@ var express = require("express");
 var path = require('path');
 var app = express();
 
-	const multer = require("multer");
-  const cloudinary = require('cloudinary').v2;
-const streamifier = require('streamifier');
-const upload = multer();
+// 	const multer = require("multer");
+//   const cloudinary = require('cloudinary').v2;
+// const streamifier = require('streamifier');
+// const upload = multer();
 	
 const HTTP_PORT = process.env.PORT || 8080;
 
