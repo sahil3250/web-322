@@ -13,19 +13,19 @@ var express = require("express");
 var path = require('path');
 var app = express();
 
-// 	const multer = require("multer");
-//   const cloudinary = require('cloudinary').v2;
-// const streamifier = require('streamifier');
-// const upload = multer();
+	const multer = require("multer");
+  const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
+const upload = multer();
 	
 const HTTP_PORT = process.env.PORT || 8080;
 
-// cloudinary.config({
-//   cloud_name: "dhobpx4ek",
-//   api_key: "742724157688558",
-//   api_secret: "WX4ZV2hlLAYbZpyWFc9MTVlC5Wo",
-//   secure: true
-// });
+cloudinary.config({
+  cloud_name: "dhobpx4ek",
+  api_key: "742724157688558",
+  api_secret: "WX4ZV2hlLAYbZpyWFc9MTVlC5Wo",
+  secure: true
+});
 app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   
@@ -66,41 +66,41 @@ app.get('/posts/add',(req,res)=>{
 });
 
 
-// app.post("/posts/add", upload.single("imageFile"), (req,res) => {
+app.post("/posts/add", upload.single("imageFile"), (req,res) => {
   
-//   let streamUpload = (req) => {
-//     return new Promise((resolve, reject) => {
-//         let stream = cloudinary.uploader.upload_stream(
-//             (error, result) => {
-//             if (result) {
-//                 resolve(result);
-//             } else {
-//                 reject(error);
-//             }
-//             }
-//         );
+  let streamUpload = (req) => {
+    return new Promise((resolve, reject) => {
+        let stream = cloudinary.uploader.upload_stream(
+            (error, result) => {
+            if (result) {
+                resolve(result);
+            } else {
+                reject(error);
+            }
+            }
+        );
 
-//         streamifier.createReadStream(req.file.buffer).pipe(stream);
-//     });
-// };
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
+    });
+};
 
-// async function upload(req) {
-//     let result = await streamUpload(req);
-//     console.log(result);
-//     return result;
-// }
+async function upload(req) {
+    let result = await streamUpload(req);
+    console.log(result);
+    return result;
+}
 
-// upload(req).then((uploaded)=>{
-//     req.body.featureImage = uploaded.url;
+upload(req).then((uploaded)=>{
+    req.body.featureImage = uploaded.url;
 
-//   blog.addPost(req.body).then(() =>
-//   {
+  blog.addPost(req.body).then(() =>
+  {
 
-//     res.redirect("/posts");
+    res.redirect("/posts");
 
-//   })
-// });
-// });
+  })
+});
+});
 
 
 
