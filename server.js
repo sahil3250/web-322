@@ -16,16 +16,16 @@ var app = express();
 	const multer = require("multer");
   const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
+const upload = multer();
 	
 const HTTP_PORT = process.env.PORT || 8080;
 
-cloudinary.config({
-  cloud_name: "dhobpx4ek",
-  api_key: "742724157688558",
-  api_secret: "WX4ZV2hlLAYbZpyWFc9MTVlC5Wo",
-  secure: true
-});
-const upload = multer();
+// cloudinary.config({
+//   cloud_name: "dhobpx4ek",
+//   api_key: "742724157688558",
+//   api_secret: "WX4ZV2hlLAYbZpyWFc9MTVlC5Wo",
+//   secure: true
+// });
 app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   
