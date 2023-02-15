@@ -17,7 +17,7 @@ var app = express();
 //   const cloudinary = require('cloudinary').v2;
 // const streamifier = require('streamifier');
 	
-// const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 8080;
 
 // cloudinary.config({
 //   cloud_name: "dhobpx4ek",
@@ -26,7 +26,7 @@ var app = express();
 //   secure: true
 // });
 // const upload = multer();
-// app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 app.get("/", (req, res) => {
   
     res.redirect('/about');
