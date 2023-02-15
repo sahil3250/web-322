@@ -82,20 +82,20 @@ module.exports.getAllPosts = ()=> {
       }
 
 
-      module.exports.addPost = (postData)=>
-      {
+   //    module.exports.addPost = (postData)=>
+   //    {
          
-         postData.published==undefined ? postData.published = false : postData.published = true;
-    postData.id = postData.length + 1;
-    posts.push(postData);
+   //       postData.published==undefined ? postData.published = false : postData.published = true;
+   //  postData.id = postData.length + 1;
+   //  posts.push(postData);
 
-    return new Promise((resolve,reject) => {
-        if (postData.length == 0) {
-            reject ('no results');
-        }
-        else {
-            resolve(postData);
-        }
-    })
+   //  return new Promise((resolve,reject) => {
+   //      if (postData.length == 0) {
+   //          reject ('no results');
+   //      }
+   //      else {
+   //          resolve(postData);
+   //      }
+   //  })
         
-      }
+   //    }
