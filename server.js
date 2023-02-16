@@ -16,8 +16,10 @@ var app = express();
 	const multer = require("multer");
   const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
-const upload = multer();
-	
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 cloudinary.config({
@@ -48,11 +50,52 @@ app.get('/about',(req,res)=>{
   });
   app.get('/posts',(req,res)=>{
     
+ if(req.query.category)
+ {
  
-    blog.getAllPosts().then(
-      data => res.send((data)),
-      error =>res.status(404).send(`Error: ${error}`)
-    );
+  blog. getPostsByCategory(req.query.category).then
+  (
+    data => res.send(data),
+    error =>res.status(404).send(`Error: ${error}`)
+  )
+
+ }
+ else if(req.query.minDate)
+ {
+
+  blog. getPostsByMinDate(req.query.minDate).then
+  (
+    data => res.send(data),
+    error =>res.status(404).send(`Error: ${error}`)
+  )
+ }
+ else if(req.query.id)
+ {
+
+  
+  blog.getPostById(req.query.id).then(
+    data => res.send((data)),
+    error => res.status(404).send(`Error: ${error}`)
+  );
+ }
+ else if(req.query.post)
+ {
+
+  blog.getAllPosts(req.query.minDate).then
+  (
+    data => res.send(data),
+    error =>res.status(404).send(`Error: ${error}`)
+  )
+ }
+ else
+ {
+  res.sendFile(path.join(__dirname,'views','post.html'));
+
+    // blog.getAllPosts().then(
+    //   data => res.send((data)),
+    //   error =>res.status(404).send(`Error: ${error}`)
+    // );
+ }
 });
 app.get('/categories',(req,res)=>{
     blog.getCategories().then(
@@ -66,7 +109,15 @@ app.get('/posts/add',(req,res)=>{
 });
 
 
-app.post("/posts/add", upload.single("imageFile"), (req,res) => {
+app.get('/post/:id', (req, res) => {
+  const { id } = req.params;
+  blog.getPostById(id).then(
+    data => res.send((data)),
+    error => res.status(404).send(`Error: ${error}`)
+  );
+});
+
+app.post("/posts/add", (req,res) => {
   
   let streamUpload = (req) => {
     return new Promise((resolve, reject) => {
@@ -80,7 +131,6 @@ app.post("/posts/add", upload.single("imageFile"), (req,res) => {
             }
         );
 
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
     });
 };
 

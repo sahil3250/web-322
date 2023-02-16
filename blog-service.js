@@ -1,4 +1,5 @@
 const fs=require("fs");
+const { resolve } = require("path");
 let posts=[];
 let categories=[];
 module.exports.initialize = ()=>
@@ -84,9 +85,8 @@ module.exports.getAllPosts = ()=> {
 
       module.exports.addPost = (postData)=>
       {
-         
          postData.published==undefined ? postData.published = false : postData.published = true;
-    postData.id = postData.length + 1;
+    postData.id = postData.id + 1;
     posts.push(postData);
 
     return new Promise((resolve,reject) => {
@@ -96,6 +96,45 @@ module.exports.getAllPosts = ()=> {
         else {
             resolve(postData);
         }
+
     })
         
+      }
+
+
+      module.exports.getPostsByCategory = (category) =>
+      {
+        return new Promise((resolve,reject) => {
+            var found = posts.filter(posts => posts.category == category);
+            if (found.length == 0) {
+                reject('no results');
+            }
+            resolve(found);
+
+
+        })
+      }
+
+      module.exports.getPostsByMinDate = (date) =>
+      {
+         return new Promise((resolve,reject) =>
+         {
+            var found = posts.filter(posts => posts.postDate >= date);
+            if (found.length == 0) {
+                reject('no results');
+            }
+            resolve(found);
+         })
+      }
+
+      module.exports.getPostById = (id) =>
+      {
+        return new Promise((resolve,reject) =>
+         {
+            var found = posts.filter(posts => posts.id == id);
+            if (found.length == 0) {
+                reject('no results');
+            }
+            resolve(found);
+         })
       }
