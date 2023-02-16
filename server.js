@@ -1,5 +1,5 @@
 /*********************************************************************************
-*  WEB322 – Assignment 02
+*  WEB322 – Assignment 03
 *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part *  of this assignment has been copied manually or electronically from any other source 
 *  (including 3rd party web sites) or distributed to other students.
 * 
@@ -117,7 +117,7 @@ app.get('/post/:id', (req, res) => {
   );
 });
 
-app.post("/posts/add", (req,res) => {
+app.post("/posts/add", upload.single("featureImage"),(req,res) => {
   
   let streamUpload = (req) => {
     return new Promise((resolve, reject) => {
@@ -130,7 +130,7 @@ app.post("/posts/add", (req,res) => {
             }
             }
         );
-
+        streamifier.createReadStream(req.file.buffer).pipe(stream);
     });
 };
 
