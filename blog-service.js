@@ -85,18 +85,19 @@ module.exports.getAllPosts = ()=> {
 
       module.exports.addPost = (postData)=>
       {
+        console.log()
          postData.published==undefined ? postData.published = false : postData.published = true;
-    postData.id = posts.id + 1;
+    postData.id = posts.length + 1;
     posts.push(postData);
 
     return new Promise((resolve,reject) => {
         if (postData.length == 0) {
             reject ('no results');
         }
-        else {
+        else 
+        {
             resolve(postData);
         }
-
     })
         
       }
