@@ -86,7 +86,7 @@ module.exports.getAllPosts = ()=> {
       module.exports.addPost = (postData)=>
       {
          postData.published==undefined ? postData.published = false : postData.published = true;
-    postData.id = postData.id + 1;
+    postData.id = posts.id + 1;
     posts.push(postData);
 
     return new Promise((resolve,reject) => {
@@ -138,3 +138,6 @@ module.exports.getAllPosts = ()=> {
             resolve(found);
          })
       }
+
+
+    
