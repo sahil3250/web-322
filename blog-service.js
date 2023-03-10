@@ -85,7 +85,6 @@ module.exports.getAllPosts = ()=> {
 
       module.exports.addPost = (postData)=>
       {
-        console.log()
          postData.published==undefined ? postData.published = false : postData.published = true;
     postData.id = posts.length + 1;
     posts.push(postData);
@@ -133,12 +132,41 @@ module.exports.getAllPosts = ()=> {
         return new Promise((resolve,reject) =>
          {
             var found = posts.filter(posts => posts.id == id);
-            if (found.length == 0) {
-                reject('no results');
-            }
-            resolve(found);
-         })
+            const uniquePost = found[0];
+         //    if (found.length == 0) {
+         //        reject('no results');
+         //    }
+         //    
+         //    resolve(found);
+         if (uniquePost) {
+          
+            resolve(uniquePost);
+        }
+        else {
+            reject("no result returned");
+        }
+          }
+         
+         
+         )
       }
 
 
     
+      
+  module.exports.getPublishedPostsByCategory = (category)=> {
+    
+    return new Promise((resolve, reject) => {
+      if(category) {
+      
+      const post = posts.filter( posts => posts.category == category && posts.published == true);
+       
+         resolve(post); 
+      } else {
+        
+         reject("no results returned");
+      }
+   });
+  
+  
+    }
