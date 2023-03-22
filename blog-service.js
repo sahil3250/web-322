@@ -1,7 +1,4 @@
-const fs=require("fs");
-const { resolve } = require("path");
-let posts=[];
-let categories=[];
+
 module.exports.initialize = ()=>
 {
 
