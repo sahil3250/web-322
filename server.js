@@ -83,6 +83,11 @@ app.engine(".hbs", exphbs.engine({
     }
 }));
 
+app.get('/', (req, res) => {
+    res.redirect("/blog");
+});
+
+
 app.set('view engine', '.hbs');
 
 app.use(express.static('public'));
@@ -146,9 +151,6 @@ app.post('/register', (req, res) => {
   app.get('/userHistory', ensureLogin, (req, res) => {
     res.render('userHistory');
   });
-app.get('/', (req, res) => {
-    res.redirect("/blog");
-});
 
 app.get('/about',(req, res) => {
     res.render("about");
